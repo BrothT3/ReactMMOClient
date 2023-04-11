@@ -4,78 +4,64 @@ import { JsonHubProtocol } from "@microsoft/signalr";
 
 
 
-function LogInForm(){
+function LogInForm() {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    
-
-
- const handleChange = (event) => {
-    setUserName(event.target.userName);
-    setPassword(event.target.password);} 
-
-    async function Login(event) {
-        event.preventDefault();
-        let response;
-        let tmpName = event.target.username;
-        let tmpPw = event.target.password;
-        return fetch('http://jats.web.dania-studerende.dk/authentication/login', {
+  
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      try {
+        const response = await fetch('http://jats.web.dania-studerende.dk/authentication/login', {
           method: 'POST',
           body: JSON.stringify({
-            "username": tmpName,
-            "password": tmpPw
+            username: userName,
+            password: password
           }),
           headers: {
             'Content-Type': 'application/json'
           }
-        }).then(resp => {
-            response = resp;
-            return response.json();
-        }).then(json => {
-            return {
-                resp : response,
-                json : json,
-                
-            };
-        })
-       
-       
-         
-        // console.log(response);
-        // return response;
-
+        });
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error(error);
       }
-
-   
-
- return (
-
-    <form onSubmit={Login}>
+    };
+  
+    const handleUserNameChange = (event) => {
+      setUserName(event.target.value);
+    };
+  
+    const handlePasswordChange = (event) => {
+      setPassword(event.target.value);
+    };
+  
+    return (
+      <form onSubmit={handleSubmit}>
         <label>
-            Name:
-            <input 
-            type = "text" 
+          Name:
+          <input 
+            type="text" 
             name="userName"
             value={userName}
-             onChange={handleChange} 
-             autoComplete="off"></input>
+            onChange={handleUserNameChange}
+            autoComplete="off"
+          />
         </label>
         <label>
-            Password:
-            <input 
-            type = "password" 
+          Password:
+          <input 
+            type="password" 
             name="password"
             value={password} 
-            onChange={handleChange}
-            autoComplete="off"></input>
+            onChange={handlePasswordChange}
+            autoComplete="off"
+          />
         </label>
-
         <button type="submit">Login</button>
-
-    </form>
-
-);
-
-}
-
-export default LogInForm;
+      </form>
+    );
+  }
+  
+  export default LogInForm;
+  
