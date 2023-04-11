@@ -16,20 +16,33 @@ function LogInForm(){
 
     async function Login(event) {
         event.preventDefault();
-        let response = await fetch('http://jats.web.dania-studerende.dk/authentication/login', {
+        let response;
+        let tmpName = event.target.username;
+        let tmpPw = event.target.password;
+        return fetch('http://jats.web.dania-studerende.dk/authentication/login', {
           method: 'POST',
           body: JSON.stringify({
-            "username": userName,
-            "password": password
+            "username": tmpName,
+            "password": tmpPw
           }),
           headers: {
             'Content-Type': 'application/json'
           }
-        });
-    
+        }).then(resp => {
+            response = resp;
+            return response.json();
+        }).then(json => {
+            return {
+                resp : response,
+                json : json,
+                
+            };
+        })
+       
+       
          
-        console.log(response);
-        return response;
+        // console.log(response);
+        // return response;
 
       }
 
@@ -42,7 +55,7 @@ function LogInForm(){
             Name:
             <input 
             type = "text" 
-            name="username"
+            name="userName"
             value={userName}
              onChange={handleChange} 
              autoComplete="off"></input>
@@ -58,6 +71,7 @@ function LogInForm(){
         </label>
 
         <button type="submit">Login</button>
+
     </form>
 
 );
