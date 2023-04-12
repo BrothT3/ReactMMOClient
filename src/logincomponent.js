@@ -4,7 +4,7 @@ import { JsonHubProtocol } from "@microsoft/signalr";
 
 
 
-function LogInForm() {
+function LogInForm(props) {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
   
@@ -22,7 +22,7 @@ function LogInForm() {
           }
         });
         const data = await response.json();
-        console.log(data);
+        props.setData(data);
       } catch (error) {
         console.error(error);
       }
