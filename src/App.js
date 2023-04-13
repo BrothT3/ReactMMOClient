@@ -1,39 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import LoginScreen from "./logincomponent";
 
-class App extends React.Component{
+class App extends React.Component {
     constructor() {
         super();
-        this.state = { authoricationbs: "" };
+        this.state = { authorizationbs: "" };
         this.authorized = false;
     }
 
-    setAuthorization= (data)=>{
-        this.state.authoricationbs =(data);
-        this.authorized = true;
-    };
-     
-        //this.state.authoricationbs = data;
-    
+    setAuthorization = (data) => {
+        this.setState({ authorizationbs: data});
+    };  
 
-    render() {
-        if(!this.authorized)
+    shouldComponentUpdate(nextProps, nextState){
+        return nextState.authorizationbs !== this.state.authorizationbs;
+    }
+
+    GameGraphics = (props) => {
+        if(props === "")
         {
-            return (
-                <>
-                    <LoginScreen setAuthorization={this.setAuthorization}/>
-                </>
-            );
+            return( <>
+            <LoginScreen setAuthorization = {this.setAuthorization}/>
+            </>);
         }
         else{
-            return(
-                <>
-
-                {/* andet komponent */}
-                </>
-            );
+            return( <h1>test</h1>);
         }
-    
+    }
+
+    render() {
+       return this.GameGraphics(this.state);
+    }
 }
-}
+
 export default App;

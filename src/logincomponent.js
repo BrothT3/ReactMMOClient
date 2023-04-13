@@ -18,7 +18,7 @@ function LoginScreen(props) {
       <LogInForm setData={handleSetData} />
       {/* Pass setData as a prop to LogInForm */}
       <div ></div>
-      <p>{props.setAuthorization(data)}</p>
+     {props.setAuthorization(data)}
       { /*do something with the data, it just breaks at this point because it can't show an object */}
     </div>
   );
