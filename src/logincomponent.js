@@ -3,6 +3,28 @@ import useGameServer from "./useGameServer";
 import { JsonHubProtocol } from "@microsoft/signalr";
 
 
+function LoginScreen(props) {
+  const [data, setData] = useState(null);
+
+
+
+  const handleSetData = (newData) => {
+    setData(JSON.stringify(newData));
+  };
+
+
+  return (
+    <div>
+      <LogInForm setData={handleSetData} />
+      {/* Pass setData as a prop to LogInForm */}
+      <div ></div>
+      <p>{props.setAuthorization(data)}</p>
+      { /*do something with the data, it just breaks at this point because it can't show an object */}
+    </div>
+  );
+
+
+
 
 function LogInForm(props) {
     const [userName, setUserName] = useState('');
@@ -62,6 +84,6 @@ function LogInForm(props) {
       </form>
     );
   }
-  
-  export default LogInForm;
+}
+  export default LoginScreen;
   
