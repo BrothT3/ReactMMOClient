@@ -1,25 +1,16 @@
-import React, { useCallback, useState } from "react";
-import useGameServer from "./useGameServer";
-import { JsonHubProtocol } from "@microsoft/signalr";
-
+import React, { useState } from "react";
 
 function LoginScreen(props) {
-  const [data, setData] = useState(null);
-
-
 
   const handleSetData = (newData) => {
-    setData(JSON.stringify(newData));
+    props.setAuthorization(JSON.stringify(newData));
   };
 
-
+ // setData(JSON.stringify(newData));
   return (
     <div>
       <LogInForm setData={handleSetData} />
-      {/* Pass setData as a prop to LogInForm */}
-      <div ></div>
-     {props.setAuthorization(data)}
-      { /*do something with the data, it just breaks at this point because it can't show an object */}
+      {/* Pass setData as a prop to LogInForm */}    
     </div>
   );
 
