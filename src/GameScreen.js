@@ -17,19 +17,16 @@ function GameScreen(props)
     function LostConnection(){
         console.log("dun fucked up");
     }
-
+    grid()
     return(
      
         <>
         <div><Chat gameServer= {gameServer}/></div>
         
         </>
-  
-        
 
     );
 
 }
 
 export default GameScreen;
-

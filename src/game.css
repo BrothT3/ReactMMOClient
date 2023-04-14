@@ -11,7 +11,7 @@
   image-rendering: pixelated;
 }
 
-.clutter, .movable, .effect {
+.clutter, .moveable, .effect {
   position: absolute;
   outline: none;
   filter: 
