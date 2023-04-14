@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import LoginScreen from "./logincomponent";
+import GameScreen from "./GameScreen";
 
 function AppComponent(){
     
-    const [authorization, setAuthorization] = useState({success: false});
+    const [authorization, setAuthorization] = useState({success: false, data :"", username: ""});
     const [authorized, setAuthorized] = useState(false);
 
     useEffect(()=> {
@@ -16,7 +17,7 @@ function AppComponent(){
         
         if(authorized)
         {
-            return(<div>Test</div>);
+            return(<GameScreen authorization={authorization}/>);
         }
         else{
             
