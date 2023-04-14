@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function LoginScreen(props) {
 
   const handleSetData = (newData) => {
-    props.setAuthorization(JSON.stringify(newData));
+    props.setAuthorization(newData);
   };
 
  // setData(JSON.stringify(newData));
@@ -35,7 +35,13 @@ function LogInForm(props) {
           }
         });
         const data = await response.json();
-        props.setData(data);
+        let userData = {success: data.success, data: data.data, username: userName }
+        props.setData(userData);
+
+        if(!data.success)
+        {
+          console.log("wrong");
+        }
       } catch (error) {
         console.error(error);
       }
@@ -48,7 +54,7 @@ function LogInForm(props) {
     const handlePasswordChange = (event) => {
       setPassword(event.target.value);
     };
-  
+
     return (
       <form onSubmit={handleSubmit}>
         <label>

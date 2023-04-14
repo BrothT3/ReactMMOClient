@@ -3,11 +3,11 @@ import LoginScreen from "./logincomponent";
 
 function AppComponent(){
     
-    const [authorization, setAuthorization] = useState("");
+    const [authorization, setAuthorization] = useState({success: false});
     const [authorized, setAuthorized] = useState(false);
 
     useEffect(()=> {
-        if (authorization !== ""){
+        if (authorization.success){
             setAuthorized(true);
         }
     }, [authorization]);
