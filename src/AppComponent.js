@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LoginScreen from "./logincomponent";
+import grid from "./renderStorage";
 
 function AppComponent(){
     
@@ -16,7 +17,12 @@ function AppComponent(){
         
         if(authorized)
         {
-            return(<div>Test</div>);
+            console.log(grid())
+            return(<div className="grid-container">
+            <img alt="" className="grid-item ground" src="./tiles/tile_01.png" />
+            <img alt="" className="grid-item ground" src="./tiles/tile_01.png" />
+        </div>);
+            
         }
         else{
             
