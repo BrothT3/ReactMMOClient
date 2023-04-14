@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { createContext } from 'react';
 import { render } from '@testing-library/react';
 import LoginScreen from './logincomponent';
-import App from './App';
+import AppComponent from './AppComponent';
 
 
 
@@ -17,7 +17,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
 //renders the provider class that provides loginform and gives us the token and such
-root.render(<App/>);
+root.render
+(<React.StrictMode>
+    <AppComponent/>
+</React.StrictMode>
+
+);
 
 
        
