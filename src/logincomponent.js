@@ -20,6 +20,7 @@ function LoginScreen(props) {
 function LogInForm(props) {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [loginStatus, setLoginStatus] = useState('Please Enter Your Credentials');
   
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -40,7 +41,7 @@ function LogInForm(props) {
 
         if(!data.success)
         {
-          console.log("wrong");
+          setLoginStatus("Wrong Username Or Password");
         }
       } catch (error) {
         console.error(error);
@@ -54,6 +55,10 @@ function LogInForm(props) {
     const handlePasswordChange = (event) => {
       setPassword(event.target.value);
     };
+
+    const handleLoginStatus = (event) => {
+      setLoginStatus(event.target.value);
+    }
 
     return (
       <form onSubmit={handleSubmit}>
@@ -77,6 +82,7 @@ function LogInForm(props) {
             autoComplete="off"
           />
         </label>
+      <h1>{loginStatus}</h1>
         <button type="submit">Login</button>
       </form>
     );

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import LoginScreen from "./logincomponent";
-import grid from "./renderStorage";
+import GameScreen from "./GameScreen";
 
 function AppComponent(){
     
-    const [authorization, setAuthorization] = useState({success: false});
+    const [authorization, setAuthorization] = useState({success: false, data :"", username: ""});
     const [authorized, setAuthorized] = useState(false);
 
     useEffect(()=> {
@@ -17,12 +17,7 @@ function AppComponent(){
         
         if(authorized)
         {
-            console.log(grid())
-            return(<div className="grid-container">
-            <img alt="" className="grid-item ground" src="./tiles/tile_01.png" />
-            <img alt="" className="grid-item ground" src="./tiles/tile_01.png" />
-        </div>);
-            
+            return(<GameScreen authorization={authorization}/>);
         }
         else{
             
