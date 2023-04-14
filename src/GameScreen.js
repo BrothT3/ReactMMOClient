@@ -19,9 +19,10 @@ function GameScreen(props)
     }
     grid()
     return(
-
+     
         <>
-        <div><Chat gameServer= {gameServer} /></div>
+        <div><Chat gameServer= {gameServer}/></div>
+        
         </>
 
     );
