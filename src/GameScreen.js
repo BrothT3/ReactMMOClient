@@ -1,5 +1,6 @@
 import React from "react";
 import useGameServer from "./useGameServer";
+import grid from "./renderStorage"
 
 
 
@@ -15,9 +16,7 @@ function GameScreen(props)
     }
 
     return(
-        <>
-        <div>test</div>
-        </>
+        grid()
     );
 
 }
