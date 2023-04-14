@@ -5,12 +5,10 @@ import React, { useState } from "react";
 function Chat(props) {
     const gameServer = props.gameServer;
     const [chatlog, setChatLog] = useState([]);
-    //let chatLog = [];
-   // let chatelements = chatLog.map(m => <p>{m}</p>)
     gameServer.connect();
 
-    const handleChatLog=(props) =>{
-        setChatLog(props);
+    const handleChatLog = (props) => {
+        setChatLog(prevChatlog => [...prevChatlog, props]);
     }
 
     gameServer.onEvent("ChatMessage", response => {
@@ -26,7 +24,11 @@ function Chat(props) {
 
     return (
         <>
-            {chatlog}
+            {chatlog.map((message, index) => (
+                <div key={index}>
+                    <span>{message}: </span>
+                </div>
+            ))}
         </>
     );
 

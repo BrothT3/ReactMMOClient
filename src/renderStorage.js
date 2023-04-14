@@ -1,3 +1,5 @@
+import React from "react";
+
 const ground = [<img alt="" className="grid-item ground" src="./tiles/tile_01.png" />
 ,<img alt="" className="grid-item ground" src="./tiles/tile_01.png" />
 ,<img alt="" className="grid-item ground" src="./tiles/tile_02.png" />];
@@ -8,4 +10,4 @@ function grid(){
     const gridContainer = (<div className="grid-container">{ground}{movable}{cluter}{effect}</div>);
 return gridContainer
 }
-export default grid
+export default grid;
