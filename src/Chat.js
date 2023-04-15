@@ -9,11 +9,11 @@ function Chat(props) {
 
     useEffect(() => {
         gameServer.connect();
-        document.addEventListener("keydown", handleKeyPress); // step 2
+        document.addEventListener("keydown", handleKeyPress); 
 
         return () => {
             gameServer.disconnect();
-            document.removeEventListener("keydown", handleKeyPress); // clean up
+            document.removeEventListener("keydown", handleKeyPress); 
         };
     }, [gameServer]);
 
@@ -39,22 +39,25 @@ function Chat(props) {
     }
 
 
-
-
-
-
     return (
         <>
-            {chatlog.map((message, index) => (
+        {/* slice to only write the last 10 messages */}
+            {chatlog.slice(-10).map((message, index) => (
                 <div key={index}>
-                    <span>{message}: </span>
+                    <span style={{color : 'black', backgroundColor: 'rgba(255, 255, 255, 0.5)'}}>{message}: </span>
                 </div>
             ))}
 
             {showInput && (
                 <form onSubmit={handleSubmit}>
-                    <input type="text" name="message" />
-                    <button type="submit">Send</button>
+                    <input 
+                    autoComplete="off"
+                     type="text" 
+                     name="message"/>
+
+                    <button 
+                    type="submit"
+                    >Send</button>
                 </form>
             )}
         </>
@@ -64,3 +67,5 @@ function Chat(props) {
 
 }
 export default Chat;
+
+

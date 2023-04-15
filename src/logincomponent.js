@@ -56,10 +56,6 @@ function LogInForm(props) {
       setPassword(event.target.value);
     };
 
-    const handleLoginStatus = (event) => {
-      setLoginStatus(event.target.value);
-    }
-
     return (
       <form onSubmit={handleSubmit}>
         <label>
