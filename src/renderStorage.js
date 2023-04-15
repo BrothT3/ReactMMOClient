@@ -1,6 +1,7 @@
 
 import ReactDOM from 'react-dom/client';
 import "./game.css";
+import React from 'react';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const ground = [<img alt="" className="grid-item ground" src="./tiles/tile_01.png" />,<img alt="" className="grid-item ground" src="./tiles/tile_01.png" />,<img alt="" className="grid-item ground" src="./tiles/tile_02.png" />];
@@ -16,6 +17,11 @@ function grid(){
     } //End temporary
     
     const gridContainer = (<div className="grid-container">{ground}{cluter}{effect}{moveable}</div>);
-    root.render(gridContainer);
+   // root.render(gridContainer);
+   // gridRender(gridContainer);
+    return gridContainer;
+
 }
+
+
 export default grid;

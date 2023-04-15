@@ -1,21 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 
 
 function Chat(props) {
     const gameServer = props.gameServer;
     const [chatlog, setChatLog] = useState([]);
-    gameServer.connect();
+    const [showInput, setShowInput] = useState(false);
 
-    const handleChatLog = (props) => {
-        setChatLog(prevChatlog => [...prevChatlog, props]);
+    useEffect(() => {
+        gameServer.connect();
+        document.addEventListener("keydown", handleKeyPress); // step 2
+
+        return () => {
+            gameServer.disconnect();
+            document.removeEventListener("keydown", handleKeyPress); // clean up
+        };
+    }, [gameServer]);
+
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const message = event.target.message.value;
+        gameServer.invoke("Chat", `${message}`);
+        event.target.reset();
+        setShowInput(false);
     }
 
+
     gameServer.onEvent("ChatMessage", response => {
-        handleChatLog(response);
-        console.log(chatlog);
+        setChatLog(prevChatlog => [...prevChatlog, response]);
 
     });
+
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            setShowInput(true);
+        }
+    }
 
 
 
@@ -29,6 +50,13 @@ function Chat(props) {
                     <span>{message}: </span>
                 </div>
             ))}
+
+            {showInput && (
+                <form onSubmit={handleSubmit}>
+                    <input type="text" name="message" />
+                    <button type="submit">Send</button>
+                </form>
+            )}
         </>
     );
 
