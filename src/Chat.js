@@ -24,6 +24,7 @@ function Chat(props) {
         gameServer.invoke("Chat", `${message}`);
         event.target.reset();
         setShowInput(false);
+        props.handleSetTyping(false);
     }
 
 
@@ -35,6 +36,7 @@ function Chat(props) {
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
             setShowInput(true);
+            props.handleSetTyping(true);
         }
     }
 
