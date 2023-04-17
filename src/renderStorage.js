@@ -19,7 +19,9 @@ function Grid(props) {
           gameServer.disconnect();
           document.removeEventListener("keydown", handleMovement); 
       };
-  }, [gameServer]);
+  }, [gameServer, props.isTyping]);
+
+
 
     gameServer.onEvent("WorldUpdate", response => {
       if(response.ground !== undefined){
@@ -69,7 +71,10 @@ function Grid(props) {
     }
 
     const handleMovement = (event) => {
-          handlePlayerMovement(`${event.key}`);
+      if(!props.isTyping)
+      {
+        handlePlayerMovement(`${event.key}`);
+      }
        
   }
 
