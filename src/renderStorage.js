@@ -86,6 +86,7 @@ function Grid(props) {
         {clutterArray.map((obj,index)=>(
           <img
           key={`clutter-${index}`}
+          style={{left:(obj.xpos)*48,top:(obj.ypos)*48}}
           className={`grid-item clutter ${CheckFlip(obj.flipped)}`}
           src={`./tiles/tile_${obj.tile}.png`}
           alt="bad path"
