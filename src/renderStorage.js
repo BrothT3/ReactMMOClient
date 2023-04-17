@@ -1,4 +1,5 @@
 
+import Player from "./Player";
 import "./game.css";
 import React, { useState } from 'react';
 
@@ -11,6 +12,7 @@ function Grid(props) {
     const [infoArray, setInfoArray] = useState([]);
 
 
+
     gameServer.onEvent("WorldUpdate", response => {
       if(response.ground !== undefined){
 
@@ -18,9 +20,8 @@ function Grid(props) {
       }
       if(response.clutter !== undefined)
       {
-        setClutterArray([clutterArray, {
-          clutter: response.clutter
-        }]);
+        setClutterArray(
+          response.clutter);
       }
       if(response.movables !== undefined)
       {
@@ -43,7 +44,14 @@ function Grid(props) {
 
     });
 
-
+    function handlePlayerMovement(direction)
+    {
+      if(direction !== "")
+      {
+        gameServer.invoke("Movement", `${direction}`);
+      }
+      
+    }
 
     return (
       <div className="grid-container">
@@ -55,7 +63,10 @@ function Grid(props) {
             alt=""
           />
         ))}
+          <Player gameServer={gameServer} handlePlayerMovement={handlePlayerMovement}/>
       </div>
+
+
     );
     
     }
