@@ -11,12 +11,17 @@
   image-rendering: pixelated;
 }
 
-.clutter, .moveable, .effect {
+.clutter, .moveable, .effect{
   position: absolute;
   outline: none;
   filter: 
     drop-shadow(3px 3px 0px rgba(0, 14, 95, 0.35))
     drop-shadow(-3px 3px 0px rgba(95, 51, 0, 0.35));
+}
+
+.info{
+  position: absolute;
+  outline: none;
 }
 
 /* Ground layered on bottom */

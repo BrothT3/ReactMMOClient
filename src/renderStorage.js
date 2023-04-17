@@ -29,7 +29,10 @@ function Grid(props) {
       }
       if(response.info !== undefined)
       {
-        setInfoArray(response.info);
+        //Dumb bypass of array limitations
+        //Could convert into standard variable with lots of work, but too lazy.
+        let tmp = [response.info,response.info];
+        setInfoArray(tmp);
       }
 
     });
@@ -43,7 +46,7 @@ function Grid(props) {
             key={`ground-${index}`}
             className="grid-item ground"
             src={`./tiles/tile_${tile}.png`}
-            alt=""
+            alt="bad path"
           />
         ))}
         {clutterArray.map((obj,index)=>(
@@ -51,7 +54,7 @@ function Grid(props) {
           key={`clutter-${index}`}
           className="grid-item clutter"
           src={`./tiles/tile_${obj.tile}.png`}
-          alt=""
+          alt="bad path"
           />
         ))}
         {moveAbleArray.map((obj,index)=>(
@@ -61,6 +64,23 @@ function Grid(props) {
             className={`grid-item moveable`}
             src={`./tiles/tile_${obj.tile}.png`}
             alt="bad path"
+          />
+        ))}
+        {effectArray.map((obj,index)=>(
+          <img
+            key={`effects-${index}`}
+            style={{left:(obj.xpos)*48,top:(obj.ypos)*48}}
+            className={`grid-item effect`}
+            src={`./tiles/tile_${obj.tile}.png`}
+            alt="bad path"
+          />
+        ))}
+        {infoArray.map((obj,index)=>(
+          <img
+            key={`info-${index}`}
+            style={{left:(1)*48,top:(1)*48}}
+            className={`grid-item info`}
+            alt={`x:${obj.xpos}, y:${obj.ypos}`}
           />
         ))}
       </div>
