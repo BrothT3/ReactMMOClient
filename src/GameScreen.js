@@ -21,7 +21,9 @@ function GameScreen(props)
         setIsTyping(value);
     }
     function LostConnection(){
-        console.log("dun fucked up");
+        props.setAuthorized(false);
+        let userData = {success: false, data: "", username: "" }
+        props.setAuthorization(userData);
     }
    
     return(

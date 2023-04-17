@@ -49,6 +49,7 @@ function Grid(props) {
 
     });
 
+    //TODO set a limit
     function handlePlayerMovement(direction)
     {
       if(direction === "w")

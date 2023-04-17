@@ -17,7 +17,7 @@ function AppComponent(){
         
         if(authorized)
         {
-            return(<GameScreen authorization={authorization}/>);
+            return(<GameScreen authorization={authorization} setAuthorized={setAuthorized} setAuthorization={setAuthorization}/>);
         }
         else{
             
