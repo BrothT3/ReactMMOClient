@@ -1,27 +1,65 @@
 
-import ReactDOM from 'react-dom/client';
 import "./game.css";
-import React from 'react';
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import React, { useState } from 'react';
 
-const ground = [<img alt="" className="grid-item ground" src="./tiles/tile_01.png" />,<img alt="" className="grid-item ground" src="./tiles/tile_01.png" />,<img alt="" className="grid-item ground" src="./tiles/tile_02.png" />];
+function Grid(props) {
+    const gameServer = props.gameServer;
+    const [groundArray, setGroundArray] = useState([]);
+    const [clutterArray, setClutterArray] = useState([]);
+    const [moveAbleArray, setMoveAbleArray] = useState([]);
+    const [effectArray, setEffectArray] = useState([]);
+    const [infoArray, setInfoArray] = useState([]);
 
-const cluter = [];
-const moveable = [<img alt="" style={{left:5*48,top:3*48}} className="grid-item moveable" src="./tiles/tile_chicken.png"/>,<img alt="" style={{left:2*48,top:1*48}} className="grid-item moveable" src="./tiles/tile_chicken.png"/>];
-const effect = [];
+
+    gameServer.onEvent("WorldUpdate", response => {
+      if(response.ground !== undefined){
+
+        setGroundArray(response.ground);
+      }
+      if(response.clutter !== undefined)
+      {
+        setClutterArray([clutterArray, {
+          clutter: response.clutter
+        }]);
+      }
+      if(response.movables !== undefined)
+      {
+        setMoveAbleArray([moveAbleArray, {
+          movables : response.movables
+        }]);
+      }
+      if(response.effects !== undefined)
+      {
+        setEffectArray([effectArray, {
+          effects : response.effects
+        }]);
+      }
+      if(response.info !== undefined)
+      {
+        setInfoArray([infoArray,{
+          info : response.info
+        }]);
+      }
+
+    });
 
 
-function grid(){
-    for (let i = 0; i < 100; i++) { //TEMPORARY. DELETE LATER!!!!-----------------------------------------------------------------------------
-        ground.push(<img alt="" className="grid-item ground" src="./tiles/tile_01.png" />)
-    } //End temporary
+
+    return (
+      <div className="grid-container">
+        {groundArray.map((tile, index) => (
+          <img
+            key={`ground-${index}`}
+            className="grid-item ground"
+            src={`./tiles/tile_${tile}.png`}
+            alt=""
+          />
+        ))}
+      </div>
+    );
     
-    const gridContainer = (<div className="grid-container">{ground}{cluter}{effect}{moveable}</div>);
-   // root.render(gridContainer);
-   // gridRender(gridContainer);
-    return gridContainer;
+    }
+  
 
-}
-
-
-export default grid;
+  export default Grid;
+  
