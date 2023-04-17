@@ -1,6 +1,7 @@
 
+
 import "./game.css";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Grid(props) {
     const gameServer = props.gameServer;
@@ -10,6 +11,15 @@ function Grid(props) {
     const [effectArray, setEffectArray] = useState([]);
     const [infoArray, setInfoArray] = useState([]);
 
+    useEffect(() => {
+      gameServer.connect();
+      document.addEventListener("keydown", handleMovement); 
+
+      return () => {
+          gameServer.disconnect();
+          document.removeEventListener("keydown", handleMovement); 
+      };
+  }, [gameServer]);
 
     gameServer.onEvent("WorldUpdate", response => {
       if(response.ground !== undefined){
@@ -37,7 +47,31 @@ function Grid(props) {
 
     });
 
+    function handlePlayerMovement(direction)
+    {
+      if(direction === "w")
+      {
+        gameServer.invoke("MoveDirection", "up");
+      }
+      if(direction === "a")
+      {
+        gameServer.invoke("MoveDirection", "left");
+      }
+      if(direction === "s")
+      {
+        gameServer.invoke("MoveDirection", "down");
+      }
+      if(direction === "d")
+      {
+        gameServer.invoke("MoveDirection", "right");
+      }
+      
+    }
 
+    const handleMovement = (event) => {
+          handlePlayerMovement(`${event.key}`);
+       
+  }
 
     return (
       <div className="grid-container">
