@@ -52,7 +52,7 @@ function Grid(props) {
         {clutterArray.map((obj,index)=>(
           <img
           key={`clutter-${index}`}
-          className="grid-item clutter"
+          className={`grid-item clutter ${CheckFlip(obj.flipped)}`}
           src={`./tiles/tile_${obj.tile}.png`}
           alt="bad path"
           />
@@ -61,7 +61,7 @@ function Grid(props) {
           <img
             key={`movables-${index}`}
             style={{left:(obj.xpos)*48,top:(obj.ypos)*48}}
-            className={`grid-item moveable`}
+            className={`grid-item moveable ${CheckFlip(obj.flipped)}`}
             src={`./tiles/tile_${obj.tile}.png`}
             alt="bad path"
           />
@@ -70,7 +70,7 @@ function Grid(props) {
           <img
             key={`effects-${index}`}
             style={{left:(obj.xpos)*48,top:(obj.ypos)*48}}
-            className={`grid-item effect`}
+            className={`grid-item effect ${CheckFlip(obj.flipped)}`}
             src={`./tiles/tile_${obj.tile}.png`}
             alt="bad path"
           />
@@ -87,7 +87,14 @@ function Grid(props) {
     );
     
     }
-  
+  function CheckFlip(msg){
+    if(msg){
+      return "flip";
+    }
+    else{
+      return "";
+    }
+  }
 
   export default Grid;
   
