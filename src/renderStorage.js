@@ -24,36 +24,68 @@ import React, { useEffect, useState } from 'react';
 
 function Grid(props) {
     const gameServer = props.gameServer;
-    const [tileArray, setTileArray] = useState([]);
+    const [groundArray, setGroundArray] = useState([]);
+    const [clutterArray, setClutterArray] = useState([]);
+    const [moveAbleArray, setMoveAbleArray] = useState([]);
+    const [effectArray, setEffectArray] = useState([]);
+    const [infoArray, setInfoArray] = useState([]);
 
-    //it keeps adding new arrays of the response instead of updating existing ones
+ 
     gameServer.onEvent("WorldUpdate", response => {
-
-      setTileArray([...tileArray, {
-        info: response.info,
-        ground: response.ground,
-        clutter: response.clutter,
-        movables: response.movables
-      }]);
+      if(response.ground !== undefined){
+        setGroundArray([groundArray, {  
+          ground: response.ground     
+        }]);
+      }
+      if(response.clutter !== undefined)
+      {
+        setClutterArray([clutterArray, {
+          clutter: response.clutter
+        }]);
+      }
+      if(response.movables !== undefined)
+      {
+        setMoveAbleArray([moveAbleArray, {
+          movables : response.movables
+        }]);
+      }
+      if(response.effects !== undefined)
+      {
+        setEffectArray([effectArray, {
+          effects : response.effects
+        }]);
+      }
+      if(response.info !== undefined)
+      {
+        setInfoArray([infoArray,{
+          info : response.info
+        }]);
+      }
+      // setGroundArray([...groundArray, {
+      //   info: response.info,
+      //   ground: response.ground,
+      //   clutter: response.clutter,
+      //   movables: response.movables
+      // }]);
     });
 
 
     return (
         <div className="grid-container">
-          {tileArray.map((tile, index) => (
-            <React.Fragment key={index}>
+          {groundArray.map((tile, index) => (
+            <>
               {tile.ground ? (
                 <img
                   className="grid-item ground"
                   src={`./tiles/tile_${tile.ground[index]}.png`}
-                  alt="tile"
+                  alt=""
                 />
               ) : undefined}
               {tile.clutter ? (
                 <img
                   className="grid-item clutter"
                   src={`./tiles/tile_${tile.clutter[index].tile}.png`}
-                  alt="clutter"
+                  alt=""
                 />
               ) : undefined}
               {tile.movables ? (
@@ -61,12 +93,12 @@ function Grid(props) {
                   <img
                     className="grid-item movable"
                     src={`./tiles/tile_${movable.tile}.png`}
-                    alt="movable"
-                    key={`${index}-${idx}`}
+                    alt=""
+                    style={{left:5*48,top:3*48}}
                   />
                 ))
               ) : undefined}
-            </React.Fragment>
+           </>
           ))}
         </div>
       );
