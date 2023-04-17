@@ -23,8 +23,6 @@ function GameScreen(props)
     return(
      
         <>
-        {/* <div>{grid()}</div>
-        <div><Chat gameServer= {gameServer}/></div> */}
         <div className="container">
             <div className="grid">
                 <Grid gameServer= {gameServer}/>

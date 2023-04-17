@@ -6,11 +6,10 @@ function LoginScreen(props) {
     props.setAuthorization(newData);
   };
 
- // setData(JSON.stringify(newData));
+
   return (
     <div>
       <LogInForm setData={handleSetData} />
-      {/* Pass setData as a prop to LogInForm */}    
     </div>
   );
 
