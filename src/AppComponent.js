@@ -3,7 +3,7 @@ import LoginScreen from "./logincomponent";
 import GameScreen from "./GameScreen";
 
 function AppComponent(){
-    
+    const [errorMsg, setErrorMsg] = useState("");
     const [authorization, setAuthorization] = useState({success: false, data :"", username: ""});
     const [authorized, setAuthorized] = useState(false);
 
@@ -17,11 +17,13 @@ function AppComponent(){
         
         if(authorized)
         {
-            return(<GameScreen authorization={authorization} setAuthorized={setAuthorized} setAuthorization={setAuthorization}/>);
+            const ass = <GameScreen authorization={authorization} setAuthorized={setAuthorized} setAuthorization={setAuthorization} setErrorMsg={setErrorMsg}/>;
+            return(ass);
         }
         else{
             
             return( <>
+            <h1>{errorMsg}</h1>
                 <LoginScreen setAuthorization = {setAuthorization}/>
                 </>);
         }

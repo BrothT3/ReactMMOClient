@@ -21,6 +21,7 @@ function GameScreen(props)
         setIsTyping(value);
     }
     function LostConnection(){
+        props.setErrorMsg("Disconnected from server due an error")
         props.setAuthorized(false);
         let userData = {success: false, data: "", username: "" }
         props.setAuthorization(userData);
