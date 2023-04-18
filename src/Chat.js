@@ -33,6 +33,10 @@ function Chat(props) {
 
     });
 
+    gameServer.onEvent("CombatMessage", response => {
+        setChatLog(prevChatlog => [...prevChatlog, response]);
+    });
+
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
             setShowInput(true);

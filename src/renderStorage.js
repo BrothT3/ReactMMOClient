@@ -12,11 +12,10 @@ function Grid(props) {
     const [infoArray, setInfoArray] = useState([]);
 
     useEffect(() => {
-      //gameServer.connect();
       document.addEventListener("keydown", handleMovement); 
 
       return () => {
-          //gameServer.disconnect();
+      
           document.removeEventListener("keydown", handleMovement); 
       };
   });
@@ -49,33 +48,41 @@ function Grid(props) {
 
     });
 
-    //TODO set a limit
+    const directions = ["up", "left", "down", "right"];
+    const keys = ["w", "a", "s", "d"];
     function handlePlayerMovement(direction)
     {
-      if(direction === "w")
+      let index = keys.indexOf(direction);
+      if(index !== -1)
       {
-        gameServer.invoke("MoveDirection", "up");
+        gameServer.invoke("MoveDirection", `${directions[index]}`);
       }
-      if(direction === "a")
-      {
-        gameServer.invoke("MoveDirection", "left");
-      }
-      if(direction === "s")
-      {
-        gameServer.invoke("MoveDirection", "down");
-      }
-      if(direction === "d")
-      {
-        gameServer.invoke("MoveDirection", "right");
-      }
+      
+
+
+      // if(direction === "w")
+      // {
+      //   gameServer.invoke("MoveDirection", "up");
+      // }
+      // if(direction === "a")
+      // {
+      //   gameServer.invoke("MoveDirection", "left");
+      // }
+      // if(direction === "s")
+      // {
+      //   gameServer.invoke("MoveDirection", "down");
+      // }
+      // if(direction === "d")
+      // {
+      //   gameServer.invoke("MoveDirection", "right");
+      // }
       
     }
 
     const handleMovement = (event) => {
-      if(!props.isTyping)
-      {
+      if(!props.isTyping && event.repeat === false) {
         handlePlayerMovement(`${event.key}`);
-      }
+      } 
        
   }
 
