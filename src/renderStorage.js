@@ -58,24 +58,6 @@ function Grid(props) {
         gameServer.invoke("MoveDirection", `${directions[index]}`);
       }
       
-
-
-      // if(direction === "w")
-      // {
-      //   gameServer.invoke("MoveDirection", "up");
-      // }
-      // if(direction === "a")
-      // {
-      //   gameServer.invoke("MoveDirection", "left");
-      // }
-      // if(direction === "s")
-      // {
-      //   gameServer.invoke("MoveDirection", "down");
-      // }
-      // if(direction === "d")
-      // {
-      //   gameServer.invoke("MoveDirection", "right");
-      // }
       
     }
 
