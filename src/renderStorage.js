@@ -61,6 +61,7 @@ function Grid(props) {
       {
         gameServer.invoke("Attack");
       }
+
       
     }
 
@@ -68,6 +69,9 @@ function Grid(props) {
       if(!props.isTyping && event.repeat === false) {
         handlePlayerInput(`${event.key}`);
       } 
+      if(event.keyCode === 32 && event.target === document.body) {
+        event.preventDefault();
+      }
        
   }
 
@@ -111,9 +115,10 @@ function Grid(props) {
         {infoArray.map((obj,index)=>(
           <img
             key={`info-${index}`}
-            style={{left:(1)*48,top:(1)*48}}
+            style={{left:(1)*48,top:(1)*48, color:"white"}}
             className={`grid-item info`}
             alt={`biome:${obj.biome}, x:${obj.xpos}, y:${obj.ypos}`}
+            
           />
         ))}
       </div>
