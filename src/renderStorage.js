@@ -12,11 +12,11 @@ function Grid(props) {
     const [infoArray, setInfoArray] = useState([]);
 
     useEffect(() => {
-      document.addEventListener("keydown", handleMovement); 
+      document.addEventListener("keydown", handleInput); 
 
       return () => {
       
-          document.removeEventListener("keydown", handleMovement); 
+          document.removeEventListener("keydown", handleInput); 
       };
   });
 
@@ -49,21 +49,24 @@ function Grid(props) {
     });
 
     const directions = ["up", "left", "down", "right"];
-    const keys = ["w", "a", "s", "d"];
-    function handlePlayerMovement(direction)
+    const keys = ["w", "a", "s", "d", " "];
+    function handlePlayerInput(value)
     {
-      let index = keys.indexOf(direction);
-      if(index !== -1)
+      let index = keys.indexOf(value);
+      if(index !== -1 && index < 4)
       {
         gameServer.invoke("MoveDirection", `${directions[index]}`);
       }
-      
+      if(index === 4)
+      {
+        gameServer.invoke("Attack");
+      }
       
     }
 
-    const handleMovement = (event) => {
+    const handleInput = (event) => {
       if(!props.isTyping && event.repeat === false) {
-        handlePlayerMovement(`${event.key}`);
+        handlePlayerInput(`${event.key}`);
       } 
        
   }
