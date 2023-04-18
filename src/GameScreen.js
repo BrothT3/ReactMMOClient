@@ -21,7 +21,8 @@ function GameScreen(props)
         setIsTyping(value);
     }
     function LostConnection(){
-        props.setErrorMsg("Disconnected from server due an error")
+        props.setShowError(true)
+        props.setErrorMsg("Serverside disconnect: Too many requests!")
         props.setAuthorized(false);
         let userData = {success: false, data: "", username: "" }
         props.setAuthorization(userData);
