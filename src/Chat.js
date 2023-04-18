@@ -8,14 +8,14 @@ function Chat(props) {
     const [showInput, setShowInput] = useState(false);
 
     useEffect(() => {
-        gameServer.connect();
+        //gameServer.connect();
         document.addEventListener("keydown", handleKeyPress); 
 
         return () => {
-            gameServer.disconnect();
+            //gameServer.disconnect();
             document.removeEventListener("keydown", handleKeyPress); 
         };
-    }, [gameServer]);
+    });
 
 
     const handleSubmit = (event) => {

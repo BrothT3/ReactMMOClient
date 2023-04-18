@@ -12,14 +12,14 @@ function Grid(props) {
     const [infoArray, setInfoArray] = useState([]);
 
     useEffect(() => {
-      gameServer.connect();
+      //gameServer.connect();
       document.addEventListener("keydown", handleMovement); 
 
       return () => {
-          gameServer.disconnect();
+          //gameServer.disconnect();
           document.removeEventListener("keydown", handleMovement); 
       };
-  }, [gameServer, props.isTyping]);
+  });
 
 
 
