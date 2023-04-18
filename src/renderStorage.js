@@ -110,7 +110,7 @@ function Grid(props) {
             key={`info-${index}`}
             style={{left:(1)*48,top:(1)*48}}
             className={`grid-item info`}
-            alt={`x:${obj.xpos}, y:${obj.ypos}`}
+            alt={`biome:${obj.biome}, x:${obj.xpos}, y:${obj.ypos}`}
           />
         ))}
       </div>
