@@ -32,15 +32,16 @@ function GameScreen(props)
      
         <>
         <div className="container">
+       
             <div className="grid">
                 <Grid gameServer= {gameServer} isTyping={isTyping}/>
             </div>
             <div className="chat">
                 <Chat gameServer = {gameServer} handleSetTyping={handleSetTyping} />
                 </div>
-            
+           
         </div>
-        
+        <button className="logout" onClick={LostConnection}>LogOut</button>
         
         </>
 
