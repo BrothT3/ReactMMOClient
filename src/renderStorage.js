@@ -38,6 +38,9 @@ function Grid(props) {
       {
         setEffectArray(response.effects);
       }
+      else{
+        setEffectArray([]);
+      }
       if(response.info !== undefined)
       {
         //Dumb bypass of array limitations
@@ -113,13 +116,11 @@ function Grid(props) {
           />
         ))}
         {infoArray.map((obj,index)=>(
-          <img
-            key={`info-${index}`}
-            style={{left:(1)*48,top:(1)*48, color:"white"}}
-            className={`grid-item info`}
-            alt={`biome:${obj.biome}, x:${obj.xpos}, y:${obj.ypos}`}
-            
-          />
+          <h1 key={`info-${index}`}
+              style={{left:(1)*48,top:(1)*48, color:"white"}}
+              className={`grid-item info`}
+              >Biome:{obj.biome} xpos:{obj.xpos} ypos:{obj.ypos}
+          </h1>
         ))}
       </div>
     );
