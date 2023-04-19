@@ -4,12 +4,6 @@ import Chat from "./Chat";
 import Grid from "./renderStorage"
 import "./GameScreen.css";
 
-
-
-
-
-
-
 function GameScreen(props)
 {
     const authorization = props.authorization;

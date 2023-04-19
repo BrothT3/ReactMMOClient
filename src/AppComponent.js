@@ -18,11 +18,10 @@ function AppComponent(){
         
         if(authorized)
         {
-            const ass = <GameScreen authorization={authorization} setAuthorized={setAuthorized} setAuthorization={setAuthorization} setShowError={setShowError} setErrorMsg={setErrorMsg}/>;
-            return(ass);
+            const gs = <GameScreen authorization={authorization} setAuthorized={setAuthorized} setAuthorization={setAuthorization} setShowError={setShowError} setErrorMsg={setErrorMsg}/>;
+            return(gs);
         }
         else{
-            console.log(showError);
             return( <>
             {showError === true && (
                 <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", backgroundColor: "rgba(0, 0, 0, 0.5)", display: "flex", justifyContent: "center", alignItems: "center" }}>
